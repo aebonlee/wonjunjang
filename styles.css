@@ -293,6 +293,8 @@ img { max-width: 100%; display: block; }
 [data-theme="dark"] .contact-card { background: rgba(99, 102, 241, 0.1); border-color: var(--border); }
 [data-theme="dark"] .contact-card h4 { color: var(--text); }
 [data-theme="dark"] .contact-card p { color: var(--text-dim); }
+[data-theme="dark"] .gallery-item { background: var(--section-bg-alt); border-color: var(--border); }
+[data-theme="dark"] #gallery { background: var(--section-bg); }
 
 .nav-links a {
     font-size: 0.9rem;
@@ -848,6 +850,188 @@ img { max-width: 100%; display: block; }
 .footer-contact p { font-size: 0.88rem; margin-bottom: 6px; }
 .footer-bottom { text-align: center; padding: 24px 0; font-size: 0.8rem; color: rgba(255, 255, 255, 0.3); }
 
+/* ── Gallery Grid ── */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+    background: var(--section-bg-alt);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-label {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-img {
+    max-width: 85vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-caption {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-top: 16px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s ease;
+    z-index: 10;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.2);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── QR Code Section ── */
+.qr-section {
+    padding: 80px 0;
+}
+
+.qr-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.qr-text {
+    flex: 1;
+}
+
+.qr-text p {
+    margin-top: 16px;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.qr-image-wrap {
+    flex-shrink: 0;
+}
+
+.qr-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: var(--radius);
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3);
+}
+
 /* ── Back to Top ── */
 .back-to-top {
     position: fixed;
@@ -897,6 +1081,7 @@ img { max-width: 100%; display: block; }
     .programs-grid { grid-template-columns: 1fr; }
     .about-cards { grid-template-columns: 1fr; }
     .career-card-body { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -934,6 +1119,11 @@ img { max-width: 100%; display: block; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .contact-cards { grid-template-columns: 1fr; }
     .hero-title { font-size: 2rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .qr-content { flex-direction: column; text-align: center; gap: 32px; }
+    .qr-text { text-align: center; }
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
 }
 
 @media (max-width: 480px) {

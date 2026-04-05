@@ -151,6 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'value.c2': '<strong>Trust and responsibility</strong> evidenced by police commendation',
             'value.c3': '<strong>Tangible results</strong> through operational process improvement',
             'value.c4': '<strong>Rapid growth potential</strong> through continuous self-development',
+            'nav.gallery': 'Gallery',
+            'gallery.title': 'Awards & <span>Gallery</span>',
+            'gallery.desc': 'View key awards, commendations, and certificates at a glance.',
+            'qr.title': 'KakaoTalk <span>Open Chat</span>',
+            'qr.desc': 'Scan the QR code or click it to connect via KakaoTalk Open Chat.',
         }
     };
 
@@ -278,6 +283,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.15 });
 
     clientGrids.forEach(grid => badgeObserver.observe(grid));
+
+    // ══════════════════════════════════════
+    // ── Gallery Lightbox ──
+    // ══════════════════════════════════════
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentGalleryIndex = 0;
+
+    function openLightbox(index) {
+        currentGalleryIndex = index;
+        const item = galleryItems[index];
+        const img = item.querySelector('img');
+        const label = item.querySelector('.gallery-label');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = label ? label.textContent : '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+        currentGalleryIndex = (currentGalleryIndex + direction + galleryItems.length) % galleryItems.length;
+        openLightbox(currentGalleryIndex);
+    }
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+    });
+
+    if (lightbox) {
+        lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.querySelector('.lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
+        lightbox.querySelector('.lightbox-next').addEventListener('click', () => navigateLightbox(1));
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+    }
 
     // ══════════════════════════════════════
     // ── Hero Parallax (subtle) ──
