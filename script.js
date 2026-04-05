@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'value.c4': '<strong>Rapid growth potential</strong> through continuous self-development',
             'nav.gallery': 'Gallery',
             'gallery.title': 'Awards & <span>Gallery</span>',
-            'gallery.desc': 'View key awards, commendations, and certificates at a glance.',
+            'gallery.desc': 'View key awards, commendations, and certificates at a glance. Click to enlarge.',
             'qr.title': 'KakaoTalk <span>Open Chat</span>',
             'qr.desc': 'Scan the QR code or click it to connect via KakaoTalk Open Chat.',
         }
