@@ -860,12 +860,14 @@ img { max-width: 100%; display: block; }
 .gallery-item[data-category="media"] {
     grid-column: 2 / 6;
     aspect-ratio: auto;
-    max-height: 600px;
+    max-height: 720px;
+    background: transparent;
+    border: none;
 }
 
 .gallery-item[data-category="media"] img {
     object-fit: contain;
-    background: var(--section-bg-alt);
+    background: transparent;
 }
 
 .gallery-item {
