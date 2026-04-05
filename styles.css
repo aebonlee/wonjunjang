@@ -1119,7 +1119,7 @@ img { max-width: 100%; display: block; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .contact-cards { grid-template-columns: 1fr; }
     .hero-title { font-size: 2rem; }
-    .gallery-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    #gallery { display: none; }
     .qr-content { flex-direction: column; text-align: center; gap: 32px; }
     .qr-text { text-align: center; }
     .lightbox-prev { left: 12px; }
