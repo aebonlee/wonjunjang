@@ -858,9 +858,9 @@ img { max-width: 100%; display: block; }
 }
 
 .gallery-item[data-category="media"] {
-    grid-column: 1 / -1;
+    grid-column: 2 / 6;
     aspect-ratio: auto;
-    max-height: 400px;
+    max-height: 600px;
 }
 
 .gallery-item[data-category="media"] img {
