@@ -853,8 +853,19 @@ img { max-width: 100%; display: block; }
 /* ── Gallery Grid ── */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.gallery-item[data-category="media"] {
+    grid-column: 1 / -1;
+    aspect-ratio: auto;
+    max-height: 400px;
+}
+
+.gallery-item[data-category="media"] img {
+    object-fit: contain;
+    background: var(--section-bg-alt);
 }
 
 .gallery-item {
@@ -1081,7 +1092,7 @@ img { max-width: 100%; display: block; }
     .programs-grid { grid-template-columns: 1fr; }
     .about-cards { grid-template-columns: 1fr; }
     .career-card-body { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media (max-width: 768px) {
